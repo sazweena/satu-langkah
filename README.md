@@ -1,17 +1,38 @@
 # Kawan Kata: working prototype
 
 **One object. One word. One step at a time.**
-A calm, step-by-step app that turns a real classroom object into a short KSSR Bahasa Melayu word lesson for autistic pupils in Standard 1–3 (PPKI/PPI), and any pupil who needs clear steps. This is a concept prototype for the **Festival Idea Putrajaya (FOI) 2026 Innovation Challenge** (Edutainment, IPT category).
+A kids' learning app where **Cil si Kancil** (Sang Kancil, the mouse-deer from Malaysian folk tales) guides autistic pupils in Standard 1–3 through real classroom objects and KSSR Bahasa Melayu words. It's useful for any pupil who needs clear steps. This is a concept prototype for the **Festival Idea Putrajaya (FOI) 2026 Innovation Challenge** (Edutainment, IPT category).
 
-**▶ Live demo:** https://sazweena.github.io/kawan-kata/ · recording mode: https://sazweena.github.io/kawan-kata/?demo
+**▶ Live app:** https://sazweena.github.io/kawan-kata/ · recording mode: https://sazweena.github.io/kawan-kata/?demo&nobadge · home-practice mode: `?mode=latihan`
+You can install it from the browser: it's a PWA with its own app icon.
 
-It's a static web app built from the team's mockups (see [`mockups/`](mockups/)). It has no build step and no server code.
+![Desktop view](screenshots/desktop.png)
 
-| Setup (teacher) | Mission + first/then | "Adakah ini pensel?" | Listen & pick |
+| Splash | Pulau Kata map | Mission | Camera |
 |---|---|---|---|
-| ![](screenshots/1_setup.png) | ![](screenshots/2_mission.png) | ![](screenshots/4_confirm.png) | ![](screenshots/6_listen.png) |
-| **Done + sticker** | **Break board** | **Teacher summary** | |
-| ![](screenshots/7_done.png) | ![](screenshots/9_rehat.png) | ![](screenshots/8_summary.png) | |
+| ![](screenshots/01_splash.png) | ![](screenshots/03_map.png) | ![](screenshots/04_mission.png) | ![](screenshots/05_camera.png) |
+| **Adakah ini pensel?** | **Game 1: Dengar & Pilih** | **Game 2: Bina Perkataan** | **Hebat!** |
+| ![](screenshots/06_confirm.png) | ![](screenshots/07c_right.png) | ![](screenshots/08b_built.png) | ![](screenshots/09_reward.png) |
+| **Buku Pelekat** | **Rehat** | **Paparan Cikgu** | |
+| ![](screenshots/11_stickers.png) | ![](screenshots/12b_rest_timer.png) | ![](screenshots/16_teacher.png) | |
+
+## How it's used: who holds the device?
+- **🏫 Mod Kelas (default):** used during the lesson on a school or teacher tablet. Pupils take turns ("Tukar giliran") with the teacher beside them. PPKI classes are small, so 1–2 tablets are enough.
+- **🏠 Mod Latihan:** the same words as home practice on a parent's phone, about 10 minutes with a parent.
+
+The teacher picks the mode in **Paparan Cikgu** (Settings → 🍎, then press and hold for 2 seconds, so children don't open it by accident).
+
+## Flow
+Splash → **Siapa yang belajar?** (who is learning?) → **Pulau Kata** map (one stop per word) → **Misi** (mission: Cil's mission, a 3-step schedule and a "Mula → Kemudian" (first → then) reward choice) → **Kamera** (camera) → **Adakah ini…?** (is this…?; the AI suggests, the child decides) or **Saya belum pasti** (I'm not sure yet; choose from the teacher's words) → **🎧 Dengar & Pilih** (listen and pick) → **🧩 Bina Perkataan** (build the word from syllables) → **Hebat!** (great!: stars + sticker) → back to the map.
+
+The support buttons 🔁 Ulang · 🙋 Bantu · 🌿 Rehat · ✋ Henti (Again · Help · Break · Stop) are always in the same place.
+
+**Teacher view:**
+- Mod Kelas / Mod Latihan
+- per-pupil progress (words, attempts, supports used, notes)
+- choose the session's words, or **+ Tambah perkataan** (add your own word with a photo and syllables)
+- settings: voice, Bina Perkataan, Mula → Kemudian, stickers, break timer
+- **🖨️ Cetak kad kertas** (print paper cards)
 
 ## Run it
 ```bash
@@ -30,23 +51,6 @@ Then open **http://localhost:8765** in Chrome, or just use the live link above. 
 - **U**: the next "Ambil gambar" (take photo) returns **"Saya belum pasti."** (I'm not sure yet), to show the fallback.
 - **D**: turn demo mode on or off.
 
-## Screens (match the mockups)
-1. **Sediakan sesi pembelajaran:** the teacher ticks words (Buku, Pensel, Pemadam, Bola, Cawan) → **Mula sesi**
-2. **Hai! Kita belajar tentang objek:** the mission "Cari satu objek" → **Mula**
-3. **Ambil gambar satu objek:** live camera with frame corners → **Ambil gambar**
-4. **Adakah ini pensel?:** "MUNGKIN …", **Dengar perkataan**, **Ya, ini** / **Saya tak pasti**
-5. **Saya belum pasti.:** choose from the teacher's words; "Ambil gambar semula" (take the photo again)
-6. **Dengar dan pilih perkataan:** hear the word and pick the matching card; a wrong pick shows "Tidak mengapa…" (that's okay) with no penalty
-7. **Bagus, sesi sudah selesai.:** **Selesai** or "Seterusnya: belajar perkataan lain"
-8. **Ringkasan sesi (Paparan guru):** words attempted plus supports used (Ulang / Bantu / Rehat / Henti), and a note box
-
-Always on the bottom bar:
-- **Ulang:** repeats the instruction aloud
-- **Bantu:** "Cikgu sudah dimaklumkan" (the teacher has been told)
-- **Rehat:** a calm break screen, with no timer
-- **Henti:** stop, which goes to the summary
-- **Pilihan anda:** sound, large text, reduced animation
-
 ## How the AI works (and the privacy claim)
 - Matching uses a **closed word set**. The model's guesses only count if they map to one of the teacher's selected words: pen or pencil → Pensel, eraser → Pemadam, any ball → Bola, cup or mug → Cawan, book or binder → Buku.
 - If the score is below 0.15, the app **never guesses**. It goes to "Saya belum pasti."
@@ -59,24 +63,9 @@ Always on the bottom bar:
 - A real product would use a model trained on KSSR classroom objects, which is what the R&D grant would pay for.
 
 
-## v2 additions
-- **Teacher setup:** pick a pupil code (Murid 01–03), add the class's **own words with a photo** (+ Tambah perkataan), and set the session options: Suara (voice), Ganjaran pelekat (sticker reward), Pemasa rehat (break timer). Open `?reward` to start with the reward switched on.
-- **Visual schedule:** 📷 Cari & ambil gambar → 👂 Dengar & pilih → ✅ Siap. Finished steps are ticked, with a soft chime.
-- **"Saya usaha untuk…" (I'm working towards…):** a first → then board. The child picks ⭐ Pelekat (sticker), 🌿 Rehat (break) or 🎵 Lagu (song).
-- **🔊 on every heading:** the instruction is read slowly, and the text stays visible.
-- **Camera:** a big round shutter, no flash, **🖼️ Muat naik gambar** (upload a photo) for devices without a camera, and 📷 Ambil semula (retake).
-- **Picture + word cards:** each card has its own 🔊. Mistakes are never penalised, and Bantu (help) is logged against the word.
-- **Koleksi pelekat saya:** a calm sticker collection. It only appears when the teacher turns rewards on.
-- **Rehat board:** the child chooses 1 minit, 2 minit or Bila saya sedia (when I'm ready). The calm ring timer has no ticking, and Kembali (back) is always available.
-- **Teacher summary:** attempts per word, supports with counts, a note box and **🖨️ Cetak versi kertas** (printable picture–word cards for pupils who prefer paper).
-- **Accessibility:**
-  - icon + text on every control, in fixed positions
-  - keyboard focus rings and a skip link
-  - `prefers-reduced-motion` respected
-  - Kontras tinggi (high contrast), Teks besar (large text), Kurangkan animasi (less animation)
-  - touch targets ≥ 48–64 px
-
 ## Design principles & references
+v3 visual style: a winding lesson path with round stops, one big chunky button per screen, a mascot narrating every screen, rounded type (Baloo 2), and a sticker book, as in **Duolingo ABC**, **Khan Academy Kids** and **Lingokids**. It's toned down for autistic learners: soft pastels, no timers or rankings, no flashing, gentle "sparkle" only (switched off by *prefers-reduced-motion* or "Kurangkan animasi" (less animation)), and text always shown with the voice.
+
 | Pattern | Where it comes from |
 |---|---|
 | Simple colours, plain words, descriptive buttons, simple consistent layouts, no autoplay or motion | GOV.UK / Home Office, *Designing for users on the autistic spectrum* ([poster](https://ukhomeoffice.github.io/accessibility-posters/autism), [blog](https://accessibility.blog.gov.uk/2016/09/02/dos-and-donts-on-designing-for-accessibility/)) |

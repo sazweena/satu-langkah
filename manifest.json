@@ -1,0 +1,16 @@
+{
+  "name": "Kawan Kata",
+  "short_name": "Kawan Kata",
+  "description": "Belajar perkataan KSSR bersama Cil si Kancil. Satu objek, satu perkataan, satu langkah pada satu masa.",
+  "lang": "ms",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff8ec",
+  "theme_color": "#2bb39b",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

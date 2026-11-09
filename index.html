@@ -2,42 +2,40 @@
 <html lang="ms">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kawan Kata</title>
-<meta name="description" content="Kawan Kata: aplikasi tenang perkataan KSSR untuk murid autisme Tahun 1–3. Satu objek. Satu perkataan. Satu langkah pada satu masa.">
+<meta name="description" content="Kawan Kata: belajar perkataan KSSR dengan Cil si Kancil. Satu objek, satu perkataan, satu langkah pada satu masa.">
+<meta name="theme-color" content="#2bb39b">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a class="skip" href="#screen">Langkau ke kandungan</a>
-<div class="app">
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo" aria-hidden="true">K</div>
-      <div><div class="name">Kawan Kata</div><div class="tag">Belajar satu langkah pada satu masa</div></div>
-    </div>
-    <button id="chip" class="chip" aria-label="Tukar ke paparan guru">Murid 01</button>
-  </header>
-
-  <main id="screen" tabindex="-1"></main>
-
-  <footer id="controls" class="controls hidden" aria-label="Butang sokongan">
-    <button class="ctl ulang" data-ctl="ulang" aria-label="Ulang arahan"><span aria-hidden="true">🔁</span> Ulang</button>
-    <button class="ctl bantu" data-ctl="bantu" aria-label="Minta bantuan cikgu"><span aria-hidden="true">🙋</span> Bantu</button>
-    <button class="ctl rehat" data-ctl="rehat" aria-label="Ambil rehat"><span aria-hidden="true">🌿</span> Rehat</button>
-    <button class="ctl henti" data-ctl="henti" aria-label="Berhenti"><span aria-hidden="true">✋</span> Henti</button>
-    <button class="pilihan" data-ctl="pilihan" aria-label="Pilihan anda: bunyi, teks dan warna"><span aria-hidden="true">⚙️</span> Pilihan anda</button>
-  </footer>
+<div class="stage">
+  <div class="cloud a"></div><div class="cloud b"></div>
+  <aside class="side" aria-hidden="true">
+    <div class="appicon" id="sideicon"></div>
+    <h1>Kawan Kata</h1>
+    <p>Belajar perkataan KSSR bersama <b>Cil si Kancil</b>.</p>
+    <p>Satu objek. Satu perkataan. Satu langkah pada satu masa.</p>
+    <div class="chips"><span>Murid autisme Tahun 1–3</span><span>Mod Kelas + Mod Latihan</span><span>Kamera dalam peranti</span><span>Tiada markah, tiada ranking</span></div>
+  </aside>
+  <div class="phone" id="phone">
+    <div class="statusbar" aria-hidden="true"><span id="clock">9:41</span><span>●●● 📶 🔋</span></div>
+    <div class="screen" id="screen"></div>
+    <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
+  </div>
 </div>
-
-<div id="overlay" class="overlay hidden" role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
 <div id="print" class="print-area" aria-hidden="true"></div>
 <div id="demoBadge" class="demo-badge hidden">DEMO</div>
 <input type="file" id="filepick" accept="image/*" class="hidden">
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js" defer></script>
+<script src="art.js" defer></script>
 <script src="app.js" defer></script>
 </body>
 </html>
