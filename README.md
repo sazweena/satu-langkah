@@ -7,9 +7,11 @@ A calm, step-by-step app that turns a real classroom object into a short KSSR Ba
 
 It's a static web app built from the team's mockups (see [`mockups/`](mockups/)). It has no build step and no server code.
 
-| Setup (teacher) | "Adakah ini pensel?" | Listen & pick | Teacher summary |
+| Setup (teacher) | Mission + first/then | "Adakah ini pensel?" | Listen & pick |
 |---|---|---|---|
-| ![](screenshots/1_setup.png) | ![](screenshots/4_confirm.png) | ![](screenshots/6_listen.png) | ![](screenshots/8_summary.png) |
+| ![](screenshots/1_setup.png) | ![](screenshots/2_mission.png) | ![](screenshots/4_confirm.png) | ![](screenshots/6_listen.png) |
+| **Done + sticker** | **Break board** | **Teacher summary** | |
+| ![](screenshots/7_done.png) | ![](screenshots/9_rehat.png) | ![](screenshots/8_summary.png) | |
 
 ## Run it
 ```bash
@@ -55,3 +57,30 @@ Always on the bottom bar:
 ## Known limits (be honest if asked)
 - Recognition uses a general model (ImageNet). Pencils are often seen as "pen", which we treat as Pensel, and some objects simply won't match. That's exactly when the "Saya belum pasti" fallback appears.
 - A real product would use a model trained on KSSR classroom objects, which is what the R&D grant would pay for.
+
+
+## v2 additions
+- **Teacher setup:** pick a pupil code (Murid 01–03), add the class's **own words with a photo** (+ Tambah perkataan), and set the session options: Suara (voice), Ganjaran pelekat (sticker reward), Pemasa rehat (break timer). Open `?reward` to start with the reward switched on.
+- **Visual schedule:** 📷 Cari & ambil gambar → 👂 Dengar & pilih → ✅ Siap. Finished steps are ticked, with a soft chime.
+- **"Saya usaha untuk…" (I'm working towards…):** a first → then board. The child picks ⭐ Pelekat (sticker), 🌿 Rehat (break) or 🎵 Lagu (song).
+- **🔊 on every heading:** the instruction is read slowly, and the text stays visible.
+- **Camera:** a big round shutter, no flash, **🖼️ Muat naik gambar** (upload a photo) for devices without a camera, and 📷 Ambil semula (retake).
+- **Picture + word cards:** each card has its own 🔊. Mistakes are never penalised, and Bantu (help) is logged against the word.
+- **Koleksi pelekat saya:** a calm sticker collection. It only appears when the teacher turns rewards on.
+- **Rehat board:** the child chooses 1 minit, 2 minit or Bila saya sedia (when I'm ready). The calm ring timer has no ticking, and Kembali (back) is always available.
+- **Teacher summary:** attempts per word, supports with counts, a note box and **🖨️ Cetak versi kertas** (printable picture–word cards for pupils who prefer paper).
+- **Accessibility:**
+  - icon + text on every control, in fixed positions
+  - keyboard focus rings and a skip link
+  - `prefers-reduced-motion` respected
+  - Kontras tinggi (high contrast), Teks besar (large text), Kurangkan animasi (less animation)
+  - touch targets ≥ 48–64 px
+
+## Design principles & references
+| Pattern | Where it comes from |
+|---|---|
+| Simple colours, plain words, descriptive buttons, simple consistent layouts, no autoplay or motion | GOV.UK / Home Office, *Designing for users on the autistic spectrum* ([poster](https://ukhomeoffice.github.io/accessibility-posters/autism), [blog](https://accessibility.blog.gov.uk/2016/09/02/dos-and-donts-on-designing-for-accessibility/)) |
+| Visual schedule with an "all done" column and audio/visual confirmation; first–then board; waiting/break board with an optional timer | Choiceworks ([App Store](https://apps.apple.com/app/choiceworks/id486210964), [BridgingApps](https://bridgingapps.org/bridgingapps-featured-app-choiceworks-2/)); First Then Visual Schedule ([App Store](https://apps.apple.com/us/app/id624035410)) |
+| Audio layer on every screen, icons over text, slow narration, big touch targets, no complex gestures | Khan Academy Kids ([blog](https://blog.khanacademy.org/supporting-english-language-acquisition-with-khan-academy-kids/)); Google, [Designing engaging apps for kids](https://developers.google.com/building-for-kids/designing-engaging-apps) |
+| Fixed button positions (motor planning); colour-coded word cards | Proloquo2Go ([AssistiveWare colour coding](https://www.assistiveware.com/support/proloquo2go/appearance/color-code-page-background), [Crescendo](https://medium.com/@AssistiveWare/proloquo2go-4-0-goes-deeper-into-the-core-of-communication-with-crescendo-940ccde3b964)) |
+| Calm, uncluttered screens; sticker rewards; adjustable sound/colour; teacher progress view | Otsimo ([App Store](https://apps.apple.com/app/id1475410615), [review](https://www.theautismdad.com/2019/06/23/review-otsimo-is-a-fantastic-educational-app-for-kids-with-autism/2)) |
