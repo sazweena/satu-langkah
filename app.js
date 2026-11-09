@@ -14,7 +14,7 @@ const WORDS = [
 ];
 const STICKERS = [['🐢', 'Penyu'], ['🌺', 'Bunga raya'], ['🦋', 'Rama-rama'], ['🚀', 'Roket'], ['🌈', 'Pelangi'], ['🍉', 'Tembikai'], ['🐘', 'Gajah'], ['🐠', 'Ikan'], ['⭐', 'Bintang']];
 const PUPILS = [{ id: 'Murid 01', face: '🐯', bg: '#ffe6e1' }, { id: 'Murid 02', face: '🐼', bg: '#e6f3ff' }, { id: 'Murid 03', face: '🐸', bg: '#dff5ef' }, { id: 'Murid 04', face: '🐨', bg: '#fff3cf' }];
-const REWARDS = { pelekat: ['⭐', 'Pelekat'], rehat: ['🌿', 'Rehat'], lagu: ['🎵', 'Lagu'] };
+const REWARDS = { pelekat: ['⭐', 'Dapat pelekat'], rehat: ['🌿', 'Rehat sekejap'], lagu: ['🎵', 'Dengar lagu'] };
 const W = id => WORDS.find(w => w.id === id);
 
 // ---------- state ----------
@@ -162,10 +162,10 @@ const SCREENS = {
       ${bubble('talk', 96, `Jom cari <b>${w.hint}</b>!`, `Jom cari ${w.hint}`)}
       <div class="sched" aria-label="Jadual langkah"><div class="on"><b>📷</b>Cari</div><div><b>👂</b>Dengar</div><div><b>⭐</b>Siap</div></div>
       <div class="missioncard"><span class="hint">Misi hari ini</span><div class="q">Cari ${w.hint} 🔍</div><p class="lead" style="margin:2px 0 0">Tiada had masa. Ambil masa anda.</p>
-      ${ft ? `<div class="ft"><div><small>MULA</small>📷 Cari objek</div><div class="ar">➜</div><div><small>KEMUDIAN</small><span id="ftThen">${REWARDS[S.reward][0]} ${REWARDS[S.reward][1]}</span></div></div>
-        <div class="rewards" role="group" aria-label="Saya usaha untuk">${Object.entries(REWARDS).map(([k, r]) => `<button class="rw ${S.reward === k ? 'sel' : ''}" data-r="${k}"><span>${r[0]}</span>${r[1]}</button>`).join('')}</div>` : ''}
+      ${ft ? `<div class="ft"><div><small>1 · BUAT DULU</small>📷 Cari objek</div><div class="ar">➜</div><div><small>2 · LEPAS ITU</small><span id="ftThen">${REWARDS[S.reward][0]} ${REWARDS[S.reward][1]}</span></div></div>
+        <div class="rwhead">Selepas misi, saya mahu… <button class="sayin" data-say="Selepas misi, kamu mahu apa? Dapat pelekat, rehat sekejap, atau dengar lagu." aria-label="Dengar">🔊</button></div><div class="rewards" role="group" aria-label="Selepas misi, saya mahu">${Object.entries(REWARDS).map(([k, r]) => `<button class="rw ${S.reward === k ? 'sel' : ''}" data-r="${k}"><span>${r[0]}</span>${r[1]}</button>`).join('')}</div>` : ''}
       </div><button class="btn" id="mula">📷 Mula</button></div>${supportBar()}`;
-    $$('.rw').forEach(b => b.onclick = () => { S.reward = b.dataset.r; $$('.rw').forEach(x => x.classList.toggle('sel', x === b)); $('#ftThen').textContent = REWARDS[S.reward].join(' '); speak('Saya usaha untuk ' + REWARDS[S.reward][1]); });
+    $$('.rw').forEach(b => b.onclick = () => { S.reward = b.dataset.r; $$('.rw').forEach(x => x.classList.toggle('sel', x === b)); $('#ftThen').textContent = REWARDS[S.reward].join(' '); speak('Selepas misi, kamu mahu ' + REWARDS[S.reward][1].toLowerCase()); });
     $('#mula').onclick = () => go('camera');
     speak(`Jom cari ${w.hint}!`);
   },
@@ -277,8 +277,8 @@ const SCREENS = {
       <div class="title">Hebat! 🎉</div><p class="lead">Kamu belajar perkataan <b>${w.bm}</b>.</p>
       <div class="starrow">${[0, 1, 2].map(i => `<span class="${i < n ? 'got' : ''}">⭐</span>`).join('')}</div>
       ${stk ? `<div class="newsticker"><span class="stk">${stk[0]}</span>Pelekat baharu: ${stk[1]}!</div>` : ''}
-      ${S.reward === 'rehat' && S.teacher.firstThen ? `<button class="btn sky sm" id="myrest" style="margin-bottom:12px">🌿 Masa rehat saya</button>` : ''}
-      ${S.reward === 'lagu' && S.teacher.firstThen ? `<button class="btn sun sm" id="mysong" style="margin-bottom:12px">🎵 Main lagu saya</button>` : ''}
+      ${S.reward === 'rehat' && S.teacher.firstThen ? `<button class="btn sky sm" id="myrest" style="margin-bottom:12px">🌿 Rehat sekejap sekarang</button>` : ''}
+      ${S.reward === 'lagu' && S.teacher.firstThen ? `<button class="btn sun sm" id="mysong" style="margin-bottom:12px">🎵 Dengar lagu sekarang</button>` : ''}
       <button class="btn" id="next">Seterusnya ➜</button>
       <p class="lead" style="margin-top:12px;font-size:14px">Tiada markah atau kelajuan dibandingkan.</p></div>`;
     $('#next').onclick = () => go('map');
@@ -348,7 +348,7 @@ const SCREENS = {
       }).join('')}</div>
       <div class="tsec"><h3>Perkataan sesi (KSSR BM Tahun 1–3)</h3><div class="grid2">${WORDS.map(w => `<button class="pcard ${S.selected.has(w.id) ? 'sel' : 'off'}" data-w="${w.id}" aria-pressed="${S.selected.has(w.id)}" style="min-height:104px"><span class="tick"></span><div class="pic" style="height:60px">${pic(w.id)}</div>${w.bm}</button>`).join('')}
         <button class="pcard add" id="addw" style="min-height:104px"><span class="plus">+</span>Tambah perkataan</button></div></div>
-      <div class="tsec"><h3>Tetapan</h3>${tg('voice', '🔊 Suara', 'Cil membaca arahan')}${tg('build', '🧩 Bina Perkataan', 'Permainan suku kata selepas Dengar & Pilih')}${tg('firstThen', '➜ Mula → Kemudian', 'Murid pilih ganjaran sebelum mula')}${tg('stickers', '⭐ Pelekat', 'Kumpul pelekat dalam buku')}${tg('breakTimer', '🌿 Pemasa rehat', 'Pilihan 1 atau 2 minit')}</div>
+      <div class="tsec"><h3>Tetapan</h3>${tg('voice', '🔊 Suara', 'Cil membaca arahan')}${tg('build', '🧩 Bina Perkataan', 'Permainan suku kata selepas Dengar & Pilih')}${tg('firstThen', '➜ Pilih ganjaran sebelum mula', 'Selepas misi: pelekat, rehat sekejap atau lagu')}${tg('stickers', '⭐ Pelekat', 'Kumpul pelekat dalam buku')}${tg('breakTimer', '🌿 Pemasa rehat', 'Pilihan 1 atau 2 minit')}</div>
       <button class="btn sun sm" id="print">🖨️ Cetak kad kertas</button>
       <p class="lead" style="font-size:13px;text-align:center;margin-top:12px">Gambar tidak disimpan. Rekod ialah sokongan, bukan diagnosis atau ranking.</p></div>`;
     $('#bk').onclick = () => go('who');

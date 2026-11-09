@@ -3,7 +3,7 @@
 **One object. One word. One step at a time.**
 A kids' learning app where **Cil si Kancil** (Sang Kancil, the mouse-deer from Malaysian folk tales) guides autistic pupils in Standard 1–3 through real classroom objects and KSSR Bahasa Melayu words. It's useful for any pupil who needs clear steps. This is a concept prototype for the **Festival Idea Putrajaya (FOI) 2026 Innovation Challenge** (Edutainment, IPT category).
 
-**▶ Live app:** https://sazweena.github.io/kawan-kata/ · recording mode: https://sazweena.github.io/kawan-kata/?demo&nobadge · home-practice mode: `?mode=latihan`
+**▶ Live app:** https://sazweena.github.io/satu-langkah/ · recording mode: https://sazweena.github.io/satu-langkah/?demo&nobadge · home-practice mode: `?mode=latihan`
 You can install it from the browser: it's a PWA with its own app icon.
 
 ![Desktop view](screenshots/desktop.png)
@@ -36,7 +36,7 @@ The support buttons 🔁 Ulang · 🙋 Bantu · 🌿 Rehat · ✋ Henti (Again �
 
 ## Run it
 ```bash
-cd kawan-kata
+cd satu-langkah
 python3 -m http.server 8765
 ```
 Then open **http://localhost:8765** in Chrome, or just use the live link above. The camera only works on `localhost` or https, so opening `index.html` by double-clicking won't give you a camera.

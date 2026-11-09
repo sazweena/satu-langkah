@@ -1,4 +1,4 @@
-/* Kawan Kata v3: kids' app UI. Playful but calm: soft pastels, chunky rounded shapes,
+/* Satu Langkah v3: kids' app UI. Playful but calm: soft pastels, chunky rounded shapes,
    one big action per screen, fixed positions, everything narrated, no flashing. */
 :root{
   --mint:#2bb39b; --mint-d:#1d8c78; --mint-l:#dff5ef; --mint-ll:#f0fbf8;
@@ -144,8 +144,10 @@ body.calm *{animation:none!important;transition:none!important}
 .ft div{background:var(--mint-ll);border:2px dashed #bfe6dc;border-radius:16px;padding:6px;text-align:center;font-weight:800;font-size:15px}
 .ft small{display:block;font-size:11px;color:var(--muted);letter-spacing:.06em}
 .ft .ar{background:none;border:none;font-size:20px;color:var(--mint-d)}
+.rwhead{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:calc(16px * var(--fs));margin-top:10px}
+.rwhead .sayin{width:34px;height:34px;border-radius:12px;background:var(--mint-l);font-size:15px}
 .rewards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
-.rw{min-height:60px;border-radius:16px;background:#fff;border:2.5px solid var(--line);font-weight:800;font-size:14px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.rw{min-height:66px;border-radius:16px;background:#fff;border:2.5px solid var(--line);font-weight:800;font-size:14px;line-height:1.15;padding:4px;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .rw span{font-size:22px}
 .rw.sel{border-color:var(--mint);background:var(--mint-l);color:var(--mint-d)}
 
