@@ -1,4 +1,4 @@
-/* Kawan Kata v3 artwork: original SVG drawings (Cil the Sang Kancil mascot, objects, icon). */
+/* Satu Langkah v3 artwork: original SVG drawings (Cil the Sang Kancil mascot, objects, icon). */
 const ART = (() => {
   const OUT = '#5b3a22';
   const ears = `

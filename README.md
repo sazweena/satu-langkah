@@ -1,4 +1,4 @@
-# Kawan Kata: working prototype
+# Satu Langkah: working prototype
 
 **One object. One word. One step at a time.**
 A kids' learning app where **Cil si Kancil** (Sang Kancil, the mouse-deer from Malaysian folk tales) guides autistic pupils in Standard 1–3 through real classroom objects and KSSR Bahasa Melayu words. It's useful for any pupil who needs clear steps. This is a concept prototype for the **Festival Idea Putrajaya (FOI) 2026 Innovation Challenge** (Edutainment, IPT category).

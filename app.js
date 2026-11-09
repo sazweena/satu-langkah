@@ -1,4 +1,4 @@
-/* Kawan Kata v3: kids' app with Cil si Kancil.
+/* Satu Langkah v3: kids' app with Cil si Kancil.
    Flow: splash → who is learning → Pulau Kata map → mission → camera → confirm / not sure →
    game 1 "Dengar & Pilih" → game 2 "Bina Perkataan" → Hebat! (stars + sticker) → map.
    Teacher area (hold-to-enter): Mod Kelas / Mod Latihan, words, settings, pupil summaries, paper cards.
@@ -109,7 +109,7 @@ const nextWord = () => WORDS.find(w => S.selected.has(w.id) && !P().stars[w.id])
 const SCREENS = {
   splash() {
     scr.innerHTML = `<div class="splash">${cil('wave', 190)}
-      <div class="appname">Kawan Kata</div><div class="tagline">Satu objek. Satu perkataan.<br>Satu langkah pada satu masa.</div>
+      <div class="appname">Satu Langkah</div><div class="tagline">Satu objek. Satu perkataan.<br>Satu langkah pada satu masa.</div>
       <button class="btn" id="go">Jom mula! 🚀</button></div>`;
     $('#go').onclick = () => go('who');
     speak('Hai! Saya Cil. Jom belajar bersama!');
@@ -476,7 +476,7 @@ function fromFile(file) {
 // ---------- paper version ----------
 function printPaper() {
   const list = WORDS.filter(w => S.selected.has(w.id));
-  $('#print').innerHTML = `<h2>Kawan Kata · Kad perkataan (versi kertas)</h2><div class="pcards">${list.map(w => `<div class="pc">${w.img ? `<img src="${w.img}" alt="">` : (ART.OBJ[w.id] || '')}<b>${w.bm}</b></div>`).join('')}</div>`;
+  $('#print').innerHTML = `<h2>Satu Langkah · Kad perkataan (versi kertas)</h2><div class="pcards">${list.map(w => `<div class="pc">${w.img ? `<img src="${w.img}" alt="">` : (ART.OBJ[w.id] || '')}<b>${w.bm}</b></div>`).join('')}</div>`;
   window.print();
 }
 
