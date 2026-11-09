@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kawan Kata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">K</div>
+      <div><div class="name">Kawan Kata</div><div class="tag">Belajar satu langkah pada satu masa</div></div>
+    </div>
+    <button id="chip" class="chip">Murid 01</button>
+  </header>
+
+  <main id="screen"></main>
+
+  <footer id="controls" class="controls hidden">
+    <button class="ctl ulang" data-ctl="ulang">Ulang</button>
+    <button class="ctl bantu" data-ctl="bantu">Bantu</button>
+    <button class="ctl rehat" data-ctl="rehat">Rehat</button>
+    <button class="ctl henti" data-ctl="henti">Henti</button>
+    <button class="pilihan" data-ctl="pilihan">Pilihan anda</button>
+  </footer>
+</div>
+
+<div id="overlay" class="overlay hidden"><div class="sheet" id="sheet"></div></div>
+<div id="demoBadge" class="demo-badge hidden">DEMO</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
